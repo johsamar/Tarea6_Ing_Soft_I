@@ -22,9 +22,9 @@ public class Control {
     private ArrayList<Estudiante> estudiantes;
 
     public Control() {
-
+        estudiantes = new ArrayList<>();
     }
-
+    
     public boolean cargarInformacion(String ruta)
             throws FileNotFoundException, ArchivoException {
 
@@ -42,10 +42,25 @@ public class Control {
         return true;
     }
 
+    /**
+     * metodo donde se armara el ponderado con la informacion del del archivo
+     * @return retorna el pondera con la informacion solicitada
+     */
     public String mostrarPonderadoEstudiante() {
-        return "";
+        String ponderado = "";
+        for (int i = 0; i < this.estudiantes.size(); i++) {
+            ponderado += this.estudiantes.get(i).getNombreEstudiante() + " " +
+                    this.estudiantes.get(i).getCantidadMaterias() + " materias \n";
+        }
+        return ponderado;
     }
 
+    /**
+     * metodo que creara un estudiante 
+     * @param datos lista que contiene los datos del estudiante a crear
+     * @return la ultima posicion del array estudiantes ya que en esa posicion 
+     * es donde quedo el nuevo estudiante 
+     */
     private int crearEstudiante(String[] datos) {
         Estudiante estudiante = new Estudiante(datos[0], datos[1]);
         this.estudiantes.add(estudiante);
@@ -53,8 +68,7 @@ public class Control {
     }
 
     /**
-     * Lee el archivo
-     *
+     * Lee el archivo que se encuentra en la ruta 
      * @param ruta la ruta del archivo
      * @return contenido del archivo en un arreglo de string(lineas)
      * @throws FileNotFoundException
@@ -69,10 +83,11 @@ public class Control {
     }
 
     /**
-     * Busca un estudiante
+     * Busca un estudiante por su cedula
      *
-     * @param cedulaEstudiante
-     * @return retorna la posicion del estudiante en la lista
+     * @param cedulaEstudiante cedula del estudiante a buscar
+     * @return retorna la posicion del estudiante en la lista,
+     * y si no lo encuentra retorna -1
      */
     private int buscarEstudiante(String cedulaEstudiante) {
         int noEncontrado = -1;

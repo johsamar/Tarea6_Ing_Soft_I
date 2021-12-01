@@ -12,10 +12,10 @@ public class Estudiante {
     private String cedulaEstudiante;
     private ArrayList<Materia> materias;
 
-    public Estudiante(String nombreEstudiante, String cedulaEstudiante) {
-        this.nombreEstudiante = nombreEstudiante;
+    public Estudiante(String cedulaEstudiante, String nombreEstudiante) {
         this.cedulaEstudiante = cedulaEstudiante;
-        this.materias = new ArrayList<Materia>();
+        this.nombreEstudiante = nombreEstudiante;
+        this.materias = new ArrayList<>();
     }
 
     public String getCedulaEstudiante() {
@@ -25,7 +25,6 @@ public class Estudiante {
     public String getNombreEstudiante() {
         return nombreEstudiante;
     }
-    
     
     /**
      * metodo encargado de añadir una materia a la lista del estudiante si 
