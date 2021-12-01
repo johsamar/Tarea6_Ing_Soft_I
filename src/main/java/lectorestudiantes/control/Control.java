@@ -24,6 +24,11 @@ public class Control {
     public Control() {
         estudiantes = new ArrayList<>();
     }
+
+    public ArrayList<Estudiante> getEstudiantes() {
+        return estudiantes;
+    }
+    
     
     public boolean cargarInformacion(String ruta)
             throws FileNotFoundException, ArchivoException {
