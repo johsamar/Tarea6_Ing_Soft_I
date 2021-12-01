@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  * Lee un archivo, para obtener su contenido
- * @author SAMUEL-PC
+ * @author Johan Samuel Marin Bañol
  * @version 1.0
  */
 public class Lector {
@@ -25,7 +25,7 @@ public class Lector {
         /**
          * Lee un archivo
          * @param ruta la ruta del archivo a leer
-         * @return el contedio del archivo en una lista de líneas
+         * @return el contenido del archivo en una lista de líneas
          * @throws FileNotFoundException Si el archivo no existe
          * @throws ArchivoException Si no cumple con las condiciones de una línea
          */
