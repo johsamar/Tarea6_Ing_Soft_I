@@ -9,9 +9,9 @@ package exceptions;
  *
  * @author SAMUEL-PC
  */
-public class ArchivoExeption extends Exception{
+public class ArchivoException extends Exception{
 
-    public ArchivoExeption(String mensaje) {
+    public ArchivoException(String mensaje) {
         super(mensaje); 
     }
     
