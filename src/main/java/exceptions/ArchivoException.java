@@ -9,12 +9,16 @@ package exceptions;
  *
  * @author SAMUEL-PC
  */
+<<<<<<< HEAD:src/main/java/exceptions/ArchivoException.java
 public class ArchivoException extends Exception{
 
     public ArchivoException(String mensaje) {
         super(mensaje); 
+=======
+public class ArchivoExeption extends Exception {
+
+    public ArchivoExeption(String mensaje) {
+        super(mensaje);
+>>>>>>> 6a68e8659288b51ffe40289d0b03ed8587b4dba1:src/main/java/exceptions/ArchivoExeption.java
     }
-    
-    
-    
 }
