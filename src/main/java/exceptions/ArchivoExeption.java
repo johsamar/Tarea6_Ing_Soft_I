@@ -7,7 +7,7 @@ package exceptions;
 
 /**
  *
- * @author SAMUEL-PC
+ * @author Jose Manuel Marin
  */
 public class ArchivoExeption extends Exception {
 
