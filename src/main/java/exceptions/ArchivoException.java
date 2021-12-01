@@ -7,7 +7,7 @@ package exceptions;
 
 /**
  *
- * @author SAMUEL-PC
+ * @author Jose Manuel Marin
  */
 <<<<<<< HEAD:src/main/java/exceptions/ArchivoException.java
 public class ArchivoException extends Exception{
