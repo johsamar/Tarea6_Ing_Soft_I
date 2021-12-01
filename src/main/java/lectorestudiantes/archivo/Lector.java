@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lectorestudiantes.archivo;
 
+import exceptions.ArchivoException;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,8 +8,9 @@ import java.io.FileReader;
 import java.util.ArrayList;
 
 /**
- *
+ * Lee un archivo, para obtener su contenido
  * @author SAMUEL-PC
+ * @version 1.0
  */
 public class Lector {
         private File archivo = null;
@@ -24,12 +21,16 @@ public class Lector {
         public Lector() {
             contenido = new ArrayList<>();
         }
+        
         /**
-         * 
-         * @param ruta
-         * @return 
+         * Lee un archivo
+         * @param ruta la ruta del archivo a leer
+         * @return el contedio del archivo en una lista de líneas
+         * @throws FileNotFoundException Si el archivo no existe
+         * @throws ArchivoException Si no cumple con las condiciones de una línea
          */
-        public ArrayList<String> leerArchivo(String ruta) throws FileNotFoundException {
+        public ArrayList<String> leerArchivo(String ruta) 
+                throws FileNotFoundException,ArchivoException {
 
             try {
                 archivo = new File(ruta);
