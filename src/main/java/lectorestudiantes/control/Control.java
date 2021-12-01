@@ -50,15 +50,17 @@ public class Control {
      */
     private int buscarEstudiante(String cedulaEstudiante){
         int noEncontrado = -1;
-        for (int i = 0; i < estudiantes.size(); i++) {
-            if(estudiantes.get(i).getCedulaEstudiante().equals(cedulaEstudiante)){
-                return i;
+        int contador = 0;
+        while (contador < estudiantes.size()) {
+            if(estudiantes.get(contador).getCedulaEstudiante().equals(cedulaEstudiante)){
+                return contador;
             }
+            contador++;
         }
         return noEncontrado;
     }
     
-    private int crearEstudiante(ArrayList datos){
+    private int crearEstudiante(String[] datos){
         return 0;
     }
 }
