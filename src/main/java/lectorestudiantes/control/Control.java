@@ -46,19 +46,44 @@ public class Control {
         return "";
     }
 
-    private ArrayList<String> leerArchivo(String ruta)
-            throws FileNotFoundException, ArchivoException {
-        Lector lector = new Lector();
-        return lector.leerArchivo(ruta);
-    }
-
-    private int buscarEstudiante(String codigoEstudiante) {
-        return 1;
-    }
-
     private int crearEstudiante(String[] datos) {
         Estudiante estudiante = new Estudiante(datos[0], datos[1]);
         this.estudiantes.add(estudiante);
-        return this.estudiantes.size()-1;
+        return this.estudiantes.size() - 1;
     }
+
+    /**
+     * Lee el archivo
+     *
+     * @param ruta la ruta del archivo
+     * @return contenido del archivo en un arreglo de string(lineas)
+     * @throws FileNotFoundException
+     * @throws ArchivoException
+     */
+    private ArrayList<String> leerArchivo(String ruta)
+            throws FileNotFoundException, ArchivoException {
+
+        Lector lector = new Lector();
+        return lector.leerArchivo(ruta);
+
+    }
+
+    /**
+     * Busca un estudiante
+     *
+     * @param cedulaEstudiante
+     * @return retorna la posicion del estudiante en la lista
+     */
+    private int buscarEstudiante(String cedulaEstudiante) {
+        int noEncontrado = -1;
+        int contador = 0;
+        while (contador < estudiantes.size()) {
+            if (estudiantes.get(contador).getCedulaEstudiante().equals(cedulaEstudiante)) {
+                return contador;
+            }
+            contador++;
+        }
+        return noEncontrado;
+    }
+
 }

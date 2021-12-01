@@ -7,7 +7,7 @@ package lectorestudiantes.archivo;
 import exceptions.ArchivoException;
 /**
  * Clase que valida las condiciones de una línea de una rchivo leído
- * @author SAMUEL-PC
+ * @author Johan Samuel Marin Bañol
  * @version 1.0
  */
 public class Validacion {
