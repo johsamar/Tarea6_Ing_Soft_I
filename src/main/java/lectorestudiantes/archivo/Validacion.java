@@ -33,9 +33,9 @@ public class Validacion {
                         numeroLinea+" contenido: "+linea);
         }
         if(division.length > limite){
-                throw new ArchivoException("La cantidad de datos "
-                    + "es superior a la requerida "+" numero de línea "+
-                        numeroLinea+" contenido: "+linea);
+            throw new ArchivoException("La cantidad de datos "
+                + "es superior a la requerida "+" numero de línea "+
+                    numeroLinea+" contenido: "+linea);
         }
         return lineaCorrecta;
     }

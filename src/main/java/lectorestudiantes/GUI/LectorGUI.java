@@ -5,12 +5,21 @@
  */
 package lectorestudiantes.GUI;
 
+import exceptions.ArchivoException;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import lectorestudiantes.control.Control;
+
 /**
  *
  * @author SAMUEL-PC
+ * @version 1.0
  */
 public class LectorGUI extends javax.swing.JFrame {
-
+    
+    private Control control;
     /**
      * Creates new form LectorGUI
      */
@@ -27,21 +36,126 @@ public class LectorGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        labelTitulo = new javax.swing.JLabel();
+        labelInRuta = new javax.swing.JLabel();
+        textRuta = new javax.swing.JTextField();
+        bCargar = new javax.swing.JButton();
+        bMostrar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        labelContenido = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        labelTitulo.setText("Sistema");
+
+        labelInRuta.setText("Ingrese Ruta");
+
+        textRuta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textRutaActionPerformed(evt);
+            }
+        });
+
+        bCargar.setText("Cargar");
+        bCargar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bCargarActionPerformed(evt);
+            }
+        });
+
+        bMostrar.setText("Mostrar");
+        bMostrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bMostrarActionPerformed(evt);
+            }
+        });
+
+        jScrollPane1.setViewportView(labelContenido);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(173, 173, 173)
+                        .addComponent(labelTitulo))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(135, 135, 135)
+                        .addComponent(bCargar)
+                        .addGap(18, 18, 18)
+                        .addComponent(bMostrar))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(labelInRuta)
+                        .addGap(18, 18, 18)
+                        .addComponent(textRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(35, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(labelTitulo)
+                .addGap(31, 31, 31)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelInRuta)
+                    .addComponent(textRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bCargar)
+                    .addComponent(bMostrar))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCargarActionPerformed
+        control = new Control();
+        
+        String rutaIngresada = textRuta.getText();
+        
+        if(rutaIngresada.length()>0){
+            try {
+                control.cargarInformacion(rutaIngresada);
+            } catch (FileNotFoundException ex) { 
+                JOptionPane.showMessageDialog(null, "Archivo no encontrado", "FILE ERROR", JOptionPane.ERROR_MESSAGE);
+            } catch (ArchivoException ex) {
+                System.out.println("ERRORCITO");
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "ARCHIVO CONTENT ERROR", JOptionPane.WARNING_MESSAGE);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "No puede estar vacío", "TEXT_EMPTY", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_bCargarActionPerformed
+
+    private void textRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textRutaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textRutaActionPerformed
+
+    private void bMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMostrarActionPerformed
+        String contenido = control.mostrarPonderadoEstudiante();
+        labelContenido.setText(contenido);
+    }//GEN-LAST:event_bMostrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +193,13 @@ public class LectorGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bCargar;
+    private javax.swing.JButton bMostrar;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelContenido;
+    private javax.swing.JLabel labelInRuta;
+    private javax.swing.JLabel labelTitulo;
+    private javax.swing.JTextField textRuta;
     // End of variables declaration//GEN-END:variables
 }
