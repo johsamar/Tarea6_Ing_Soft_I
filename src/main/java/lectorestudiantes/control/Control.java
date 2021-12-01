@@ -92,7 +92,8 @@ public class Control {
     private int buscarEstudiante(String cedulaEstudiante) {
         int noEncontrado = -1;
         int contador = 0;
-        while (contador < estudiantes.size()) {
+        
+        while (contador < estudiantes.size()){
             if (estudiantes.get(contador).getCedulaEstudiante().equals(cedulaEstudiante)) {
                 return contador;
             }
