@@ -28,6 +28,10 @@ public class Validacion {
         boolean lineaCorrecta = true;
         
         String[] division = linea.split(",");
+        if(division.length == 1){
+            throw new ArchivoException("Sintaxis de línea no válida "+" numero de línea "+
+                        numeroLinea+" contenido: "+linea);
+        }
         if(division.length < limite){
             throw new ArchivoException("La cantidad de datos "
                     + "es inferior a la requerida "+" numero de línea "+

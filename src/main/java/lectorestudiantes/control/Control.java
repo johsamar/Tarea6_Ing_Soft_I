@@ -51,11 +51,12 @@ public class Control {
      * @return retorna el pondera con la informacion solicitada
      */
     public String mostrarPonderadoEstudiante() {
-        String ponderado = "";
+        String ponderado = "<html>";
         for (int i = 0; i < this.estudiantes.size(); i++) {
             ponderado += this.estudiantes.get(i).getNombreEstudiante() + " " +
-                    this.estudiantes.get(i).getCantidadMaterias() + " materias \n";
+                    this.estudiantes.get(i).getCantidadMaterias() + " materias <br>";
         }
+        ponderado = ponderado + "</html>";
         return ponderado;
     }
 

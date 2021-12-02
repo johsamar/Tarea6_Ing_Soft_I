@@ -25,7 +25,6 @@ public class LectorGUI extends javax.swing.JFrame {
      */
     public LectorGUI() {
         initComponents();
-        this.bMostrar.setEnabled(false);
     }
 
     /**
@@ -42,7 +41,6 @@ public class LectorGUI extends javax.swing.JFrame {
         labelInRuta = new javax.swing.JLabel();
         textRuta = new javax.swing.JTextField();
         bCargar = new javax.swing.JButton();
-        bMostrar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         labelContenido = new javax.swing.JLabel();
 
@@ -65,13 +63,6 @@ public class LectorGUI extends javax.swing.JFrame {
             }
         });
 
-        bMostrar.setText("Mostrar");
-        bMostrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bMostrarActionPerformed(evt);
-            }
-        });
-
         jScrollPane1.setViewportView(labelContenido);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -84,11 +75,6 @@ public class LectorGUI extends javax.swing.JFrame {
                         .addGap(173, 173, 173)
                         .addComponent(labelTitulo))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(135, 135, 135)
-                        .addComponent(bCargar)
-                        .addGap(18, 18, 18)
-                        .addComponent(bMostrar))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -97,6 +83,10 @@ public class LectorGUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(textRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(35, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(bCargar)
+                .addGap(173, 173, 173))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,9 +98,7 @@ public class LectorGUI extends javax.swing.JFrame {
                     .addComponent(labelInRuta)
                     .addComponent(textRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bCargar)
-                    .addComponent(bMostrar))
+                .addComponent(bCargar)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(18, Short.MAX_VALUE))
@@ -131,6 +119,8 @@ public class LectorGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCargarActionPerformed
+        long milisInicio = System.currentTimeMillis();
+        labelContenido.setText("");
         control = new Control();
         
         String rutaIngresada = textRuta.getText();
@@ -138,8 +128,9 @@ public class LectorGUI extends javax.swing.JFrame {
         if(rutaIngresada.length()>0){
             try {
                 control.cargarInformacion(rutaIngresada);
-                this.bMostrar.setEnabled(true);
-                this.bCargar.setEnabled(false);
+                String contenido = control.mostrarPonderadoEstudiante();
+                labelContenido.setText(contenido);
+
             } catch (FileNotFoundException ex) { 
                 JOptionPane.showMessageDialog(null, "Archivo no encontrado", "FILE ERROR", JOptionPane.ERROR_MESSAGE);
             } catch (ArchivoException ex) {
@@ -150,18 +141,13 @@ public class LectorGUI extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(null, "No puede estar vacío", "TEXT_EMPTY", JOptionPane.WARNING_MESSAGE);
         }
+        long milisFinal = System.currentTimeMillis();
+        System.out.println(milisFinal - milisInicio);
     }//GEN-LAST:event_bCargarActionPerformed
 
     private void textRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textRutaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textRutaActionPerformed
-
-    private void bMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMostrarActionPerformed
-        String contenido = control.mostrarPonderadoEstudiante();
-        labelContenido.setText(contenido);
-        this.bMostrar.setEnabled(false);
-        this.bCargar.setEnabled(true);
-    }//GEN-LAST:event_bMostrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -200,7 +186,6 @@ public class LectorGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bCargar;
-    private javax.swing.JButton bMostrar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelContenido;
