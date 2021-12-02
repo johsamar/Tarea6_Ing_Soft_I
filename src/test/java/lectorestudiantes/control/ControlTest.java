@@ -17,6 +17,19 @@ public class ControlTest {
     public ControlTest() {
     }
     /**
+     * prueba en donde se va a evaluar cuando un archivo tiene una ruta buena, 
+     * y tiene informacion
+     * @throws Exception 
+     */
+    @Test
+    public void testCargarInformacionConArchivoConInfo() throws Exception {
+        Control control = new Control();
+        String ruta = "C:\\Users\\jmanu\\Desktop\\PonderadoEstudiantes.txt";
+        Boolean resultado = control.cargarInformacion(ruta);
+        assertTrue(resultado);
+        assertEquals(3, control.getEstudiantes().size());
+    }
+    /**
      * prueba en donde se verifica cuando el archivo tiene una ruta buena, 
      * pero no tiene contenido
      * @throws Exception 
