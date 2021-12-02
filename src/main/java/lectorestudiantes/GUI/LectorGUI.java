@@ -25,6 +25,7 @@ public class LectorGUI extends javax.swing.JFrame {
      */
     public LectorGUI() {
         initComponents();
+        this.bMostrar.setEnabled(false);
     }
 
     /**
@@ -137,12 +138,15 @@ public class LectorGUI extends javax.swing.JFrame {
         if(rutaIngresada.length()>0){
             try {
                 control.cargarInformacion(rutaIngresada);
+                this.bMostrar.setEnabled(true);
+                this.bCargar.setEnabled(false);
             } catch (FileNotFoundException ex) { 
                 JOptionPane.showMessageDialog(null, "Archivo no encontrado", "FILE ERROR", JOptionPane.ERROR_MESSAGE);
             } catch (ArchivoException ex) {
                 System.out.println("ERRORCITO");
                 JOptionPane.showMessageDialog(null, ex.getMessage(), "ARCHIVO CONTENT ERROR", JOptionPane.WARNING_MESSAGE);
             }
+            
         }else{
             JOptionPane.showMessageDialog(null, "No puede estar vacío", "TEXT_EMPTY", JOptionPane.WARNING_MESSAGE);
         }
@@ -155,6 +159,8 @@ public class LectorGUI extends javax.swing.JFrame {
     private void bMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMostrarActionPerformed
         String contenido = control.mostrarPonderadoEstudiante();
         labelContenido.setText(contenido);
+        this.bMostrar.setEnabled(false);
+        this.bCargar.setEnabled(true);
     }//GEN-LAST:event_bMostrarActionPerformed
 
     /**

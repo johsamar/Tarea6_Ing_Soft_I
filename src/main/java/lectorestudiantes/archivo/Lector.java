@@ -10,7 +10,7 @@ import java.util.ArrayList;
 /**
  * Lee un archivo, para obtener su contenido
  * @author Johan Samuel Marin Bañol
- * @version 1.1
+ * @version 1.2
  */
 public class Lector {
         private File archivo = null;
@@ -31,22 +31,24 @@ public class Lector {
          */
         public ArrayList<String> leerArchivo(String ruta) 
                 throws FileNotFoundException,ArchivoException {
-
+            
             try {
-                archivo = new File(ruta);
-                fileReader = new FileReader(archivo);
-                bufferedReader = new BufferedReader(fileReader);
+                if(Validacion.validarFormato(ruta)){
+                    archivo = new File(ruta);
+                    fileReader = new FileReader(archivo);
+                    bufferedReader = new BufferedReader(fileReader);
 
-                String linea;
-                int numeroLinea = 1;
-                while ((linea = bufferedReader.readLine()) != null) {
-                    boolean  validaciones = Validacion.validarLinea(linea, numeroLinea);
-                    if(validaciones){
-                        contenido.add(linea);
+                    String linea;
+                    int numeroLinea = 1;
+                    while ((linea = bufferedReader.readLine()) != null) {
+                        boolean  validaciones = Validacion.validarLinea(linea, numeroLinea);
+                        if(validaciones){
+                            contenido.add(linea);
+                        }
+                        numeroLinea++;
                     }
-                    numeroLinea++;
+                    return contenido;
                 }
-                return contenido;
 
             } catch (FileNotFoundException fe) {
                 throw new FileNotFoundException("Archivo No encontrado");

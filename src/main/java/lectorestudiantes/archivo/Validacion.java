@@ -6,13 +6,14 @@
 package lectorestudiantes.archivo;
 import exceptions.ArchivoException;
 /**
- * Clase que valida las condiciones de una línea de una rchivo leído
+ * Clase que valida las condiciones de una línea de una Archivo leído
  * @author Johan Samuel Marin Bañol
- * @version 1.0
+ * @version 1.1
  */
 public class Validacion {
     
     private static int limite = 4;
+    private static String extension = "txt";
     /**
      * Valida que la linea del archivo cumpla 
      * con las condiciones requeridas
@@ -38,5 +39,17 @@ public class Validacion {
                     numeroLinea+" contenido: "+linea);
         }
         return lineaCorrecta;
+    }
+    
+    public static boolean validarFormato(String ruta) 
+                                    throws ArchivoException{
+        boolean rutaCorrecta = true;
+        
+        String[] division = ruta.split("\\.");
+        int ultimaPos = division.length-1;
+        if(!division[ultimaPos].equals(extension)){
+            throw new ArchivoException("Formato no válido, debe ser "+extension);
+        }
+        return rutaCorrecta;
     }
 }
