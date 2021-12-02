@@ -8,8 +8,6 @@ package lectorestudiantes.control;
 import exceptions.ArchivoException;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import lectorestudiantes.archivo.Lector;
 import lectorestudiantes.modelo.Estudiante;
 
@@ -20,6 +18,7 @@ import lectorestudiantes.modelo.Estudiante;
 public class Control {
 
     private ArrayList<Estudiante> estudiantes;
+    private final int PArtition_DATA_DEFAULT = 4;
 
     public Control() {
         estudiantes = new ArrayList<>();
@@ -35,7 +34,7 @@ public class Control {
 
         ArrayList infoArchivo = leerArchivo(ruta);
         int posicionEstudiante;
-        String[] particionLinea = new String[4];
+        String[] particionLinea = new String[PArtition_DATA_DEFAULT];
         for (int i = 0; i < infoArchivo.size(); i++) {
             particionLinea = infoArchivo.get(i).toString().split(",");
             posicionEstudiante = this.buscarEstudiante(particionLinea[0]);

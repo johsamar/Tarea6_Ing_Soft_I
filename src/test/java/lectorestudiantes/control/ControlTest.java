@@ -16,13 +16,17 @@ public class ControlTest {
     
     public ControlTest() {
     }
-
+    /**
+     * prueba en donde se verifica cuando el archivo tiene una ruta buena, 
+     * pero no tiene contenido
+     * @throws Exception 
+     */
     @Test
     public void testCargarInformacionConArchivoSinInfo() throws Exception {
         Control control = new Control();
         String ruta = "C:\\Users\\jmanu\\Desktop\\Vacio.txt";
         Boolean resultado = control.cargarInformacion(ruta);
         assertTrue(resultado);
-        //assertEquals("", control.getEstudiantes());
+        assertEquals(0, control.getEstudiantes().size());
     }
 }

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 /**
  * Lee un archivo, para obtener su contenido
  * @author Johan Samuel Marin Bañol
- * @version 1.0
+ * @version 1.1
  */
 public class Lector {
         private File archivo = null;
@@ -38,9 +38,10 @@ public class Lector {
                 bufferedReader = new BufferedReader(fileReader);
 
                 String linea;
-                int numeroLinea = 0;
+                int numeroLinea = 1;
                 while ((linea = bufferedReader.readLine()) != null) {
-                    if(Validacion.validarLinea(linea, numeroLinea)){
+                    boolean  validaciones = Validacion.validarLinea(linea, numeroLinea);
+                    if(validaciones){
                         contenido.add(linea);
                     }
                     numeroLinea++;
@@ -49,6 +50,8 @@ public class Lector {
 
             } catch (FileNotFoundException fe) {
                 throw new FileNotFoundException("Archivo No encontrado");
+            } catch (ArchivoException archivoException) {
+                throw archivoException;
             }
             catch (Exception e) {
                 e.printStackTrace();
